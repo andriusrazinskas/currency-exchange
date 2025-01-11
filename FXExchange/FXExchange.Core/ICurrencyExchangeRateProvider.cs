@@ -1,6 +1,6 @@
 ﻿namespace FXExchange.Core;
 
-internal interface ICurrencyExchangeRateProvider
+public interface ICurrencyExchangeRateProvider
 {
     Task<decimal> GetExchangeRateAsync(Currency mainCurrency, Currency targetCurrency);
 }

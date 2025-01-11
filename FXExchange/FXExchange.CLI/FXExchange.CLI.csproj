@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FXExchange.Core\FXExchange.Core.csproj" />
+    <ProjectReference Include="..\FXExchange.Infrastructure\FXExchange.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -50,7 +50,7 @@ internal class CommandLineArgumentsParserTests
     {
         var arguments = Enumerable.Range(0, argumentsCount).Select(i => i.ToString()).ToArray();
 
-        var exception = Assert.Throws<Exception>(() => _parser.Parse(arguments));
+        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
         Assert.That(exception.Message, Is.EqualTo("Incorrect arguments count. Usage: FXExchange.CLI.exe <currency pair> <amount to exchange>"));
     }
@@ -60,9 +60,9 @@ internal class CommandLineArgumentsParserTests
     {
         var arguments = new [] { "EUG/USD", "1.12345" };
 
-        var exception = Assert.Throws<Exception>(() => _parser.Parse(arguments));
+        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
-        Assert.That(exception.Message, Is.EqualTo("Main currency could not be parsed."));
+        Assert.That(exception.Message, Is.EqualTo("Main currency cannot be parsed."));
     }
 
     [Test]
@@ -70,7 +70,7 @@ internal class CommandLineArgumentsParserTests
     {
         var arguments = new[] { "EUR/UGD", "1.12345" };
 
-        var exception = Assert.Throws<Exception>(() => _parser.Parse(arguments));
+        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
         Assert.That(exception.Message, Is.EqualTo("Target currency cannot be parsed."));
     }
@@ -80,7 +80,7 @@ internal class CommandLineArgumentsParserTests
     {
         var arguments = new[] { "EUR/USD", "1abc" };
 
-        var exception = Assert.Throws<Exception>(() => _parser.Parse(arguments));
+        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
         Assert.That(exception.Message, Is.EqualTo("Amount to exchange cannot be parsed."));
     }
@@ -90,7 +90,7 @@ internal class CommandLineArgumentsParserTests
     {
         var arguments = new[] { "EUR/USD", "-1.2" };
 
-        var exception = Assert.Throws<Exception>(() => _parser.Parse(arguments));
+        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
         Assert.That(exception.Message, Is.EqualTo("Amount to exchange cannot be negative."));
     }

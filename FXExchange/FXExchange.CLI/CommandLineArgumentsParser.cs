@@ -1,4 +1,5 @@
-﻿using FXExchange.Core;
+﻿using System.Globalization;
+using FXExchange.Core;
 
 namespace FXExchange.CLI;
 
@@ -56,7 +57,7 @@ internal class CommandLineArgumentsParser : ICommandLineArgumentsParser
     {
         amountToExchange = 0;
 
-        if (decimal.TryParse(args.ElementAtOrDefault(1)?.Replace(',', '.'), out var result))
+        if (decimal.TryParse(args.ElementAtOrDefault(1)?.Replace(',', '.'), CultureInfo.InvariantCulture, out var result))
         {
             amountToExchange = result;
 

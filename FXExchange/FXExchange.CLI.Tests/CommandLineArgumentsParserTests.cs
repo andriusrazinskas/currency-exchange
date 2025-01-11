@@ -62,7 +62,7 @@ internal class CommandLineArgumentsParserTests
 
         var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
-        Assert.That(exception.Message, Is.EqualTo("Main currency cannot be parsed."));
+        Assert.That(exception.Message, Is.EqualTo("Currencies cannot be parsed."));
     }
 
     [Test]
@@ -72,7 +72,17 @@ internal class CommandLineArgumentsParserTests
 
         var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 
-        Assert.That(exception.Message, Is.EqualTo("Target currency cannot be parsed."));
+        Assert.That(exception.Message, Is.EqualTo("Currencies cannot be parsed."));
+    }
+
+    [Test]
+    public void Parse_ThrowsException_WhenCurrenciesPairIsIncorrect()
+    {
+        var arguments = new[] { "EUR-USD", "1.12345" };
+
+        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
+
+        Assert.That(exception.Message, Is.EqualTo("Currencies cannot be parsed."));
     }
 
     [Test]

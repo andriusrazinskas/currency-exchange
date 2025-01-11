@@ -17,8 +17,8 @@ internal class CommandLineArgumentsParser : ICommandLineArgumentsParser
         }
 
         return new CurrencyExchangeRequest(
-            TryParseMainCurrency(args, out var mainCurrency) ? mainCurrency : throw new ArgumentException("Main currency cannot be parsed."),
-            TryParseTargetCurrency(args, out var targetCurrency) ? targetCurrency : throw new ArgumentException("Target currency cannot be parsed."),
+            TryParseMainCurrency(args, out var mainCurrency) ? mainCurrency : throw new ArgumentException("Currencies cannot be parsed."),
+            TryParseTargetCurrency(args, out var targetCurrency) ? targetCurrency : throw new ArgumentException("Currencies cannot be parsed."),
             TryParseAmountToExchange(args, out var amountToExchange) ? amountToExchange : throw new ArgumentException("Amount to exchange cannot be parsed."));
     }
 

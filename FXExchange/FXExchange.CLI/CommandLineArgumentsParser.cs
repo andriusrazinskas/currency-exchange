@@ -60,12 +60,6 @@ internal class CommandLineArgumentsParser : ICommandLineArgumentsParser
         {
             amountToExchange = result;
 
-            // TODO extract this, parser should not be responsible for validating this
-            if (amountToExchange < 0)
-            {
-                throw new ArgumentException("Amount to exchange cannot be negative.");
-            }
-
             return true;
         }
 

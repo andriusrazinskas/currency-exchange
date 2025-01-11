@@ -94,14 +94,4 @@ internal class CommandLineArgumentsParserTests
 
         Assert.That(exception.Message, Is.EqualTo("Amount to exchange cannot be parsed."));
     }
-
-    [Test]
-    public void Parse_ThrowsException_WhenAmountToExchangeIsNegative()
-    {
-        var arguments = new[] { "EUR/USD", "-1.2" };
-
-        var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
-
-        Assert.That(exception.Message, Is.EqualTo("Amount to exchange cannot be negative."));
-    }
 }

@@ -14,6 +14,11 @@ internal class CurrencyConverter(ICurrencyExchangeRateProvider _currencyExchange
             return amountToConvert;
         }
 
+        if (amountToConvert < 0)
+        {
+            throw new ArgumentException("Amount to exchange cannot be negative.");
+        }
+
         var exchangeRate = await _currencyExchangeRateProvider.GetExchangeRateAsync(mainCurrency, targetCurrency).ConfigureAwait(false);
 
         return amountToConvert * exchangeRate;

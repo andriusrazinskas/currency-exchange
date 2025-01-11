@@ -26,4 +26,16 @@ internal class CurrencyConverterTests
 
         Assert.That(convertedAmount, Is.EqualTo(23.23659393m));
     }
+
+    [Test]
+    public async Task ConvertAsync_ReturnsOriginalAmount_WhenConvertingToSameCurrency()
+    {
+        var amountToConvert = 3.12345m;
+
+        var convertedAmount = await _currencyConverter.ConvertAsync(Currency.EUR, Currency.EUR, amountToConvert);
+
+        await _currencyExchangeRateProvider.DidNotReceive().GetExchangeRateAsync(Arg.Any<Currency>(), Arg.Any<Currency>());
+
+        Assert.That(convertedAmount, Is.EqualTo(amountToConvert));
+    }
 }

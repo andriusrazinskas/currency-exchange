@@ -9,6 +9,11 @@ internal class CurrencyConverter(ICurrencyExchangeRateProvider _currencyExchange
 {
     public async Task<decimal> ConvertAsync(Currency mainCurrency, Currency targetCurrency, decimal amountToConvert)
     {
+        if (mainCurrency == targetCurrency)
+        {
+            return amountToConvert;
+        }
+
         var exchangeRate = await _currencyExchangeRateProvider.GetExchangeRateAsync(mainCurrency, targetCurrency).ConfigureAwait(false);
 
         return amountToConvert * exchangeRate;

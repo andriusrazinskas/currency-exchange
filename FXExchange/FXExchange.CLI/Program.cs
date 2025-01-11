@@ -1,10 +1,28 @@
-﻿namespace FXExchange.CLI
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace FXExchange.CLI;
+
+internal class Program
 {
-    internal class Program
+    public static async Task<int> Main(string[] args)
     {
-        static void Main(string[] args)
+        var serviceProvider = new ServiceCollection()
+            .AddCliDependencies()
+            .BuildServiceProvider();
+
+        try
         {
-            Console.WriteLine("Hello, World!");
+            var commandLineArgumentsParser = serviceProvider.GetRequiredService<ICommandLineArgumentsParser>();
+
+            var request = commandLineArgumentsParser.Parse(args);
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+
+            return -1;
+        }
+
+        return 0;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace FXExchange.Core;
 
-public enum Currency
+public enum Currency : ushort
 {
     Unknown = 0,
     EUR,

@@ -68,7 +68,7 @@ internal class CommandLineArgumentsParserTests
     [Test]
     public void Parse_ThrowsException_WhenTargetCurrencyIsIncorrect()
     {
-        var arguments = new[] { "EUR/UGD", "1.12345" };
+        var arguments = new[] { "EUR/Unknown", "1.12345" };
 
         var exception = Assert.Throws<ArgumentException>(() => _parser.Parse(arguments));
 

@@ -28,7 +28,7 @@ internal class CommandLineArgumentsParser : ICommandLineArgumentsParser
 
         var firstCurrency = args.FirstOrDefault()?.Split('/').FirstOrDefault()?.Trim();
 
-        if (Enum.TryParse<Currency>(firstCurrency, true, out var result))
+        if (Enum.TryParse<Currency>(firstCurrency, true, out var result) && result != Currency.Unknown)
         {
             currency = result;
             return true;
@@ -43,7 +43,7 @@ internal class CommandLineArgumentsParser : ICommandLineArgumentsParser
 
         var secondCurrency = args.FirstOrDefault()?.Split('/').ElementAtOrDefault(1)?.Trim();
 
-        if (Enum.TryParse<Currency>(secondCurrency, true, out var result))
+        if (Enum.TryParse<Currency>(secondCurrency, true, out var result) && result != Currency.Unknown)
         {
             currency = result;
             return true;

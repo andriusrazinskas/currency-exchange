@@ -18,9 +18,9 @@ internal class CommandLineArgumentsParserTests
     [TestCase(new[] { " gbp / sek ", "3" }, Currency.GBP)]
     public void Parse_ParsesMainCurrency_WhenInputIsValid(string[] args, Currency expectedCurrency)
     {
-        var request = _parser.Parse(args);
+        var details = _parser.Parse(args);
 
-        Assert.That(request.MainCurrency, Is.EqualTo(expectedCurrency));
+        Assert.That(details.MainCurrency, Is.EqualTo(expectedCurrency));
     }
 
     [TestCase(new[] { "EUR/USD", "1" }, Currency.USD)]
@@ -28,9 +28,9 @@ internal class CommandLineArgumentsParserTests
     [TestCase(new[] { " gbp / sek ", "3" }, Currency.SEK)]
     public void Parse_ParsesTargetCurrency_WhenInputIsValid(string[] args, Currency expectedCurrency)
     {
-        var request = _parser.Parse(args);
+        var details = _parser.Parse(args);
 
-        Assert.That(request.TargetCurrency, Is.EqualTo(expectedCurrency));
+        Assert.That(details.TargetCurrency, Is.EqualTo(expectedCurrency));
     }
 
     [TestCase(new[] { "EUR/USD", "1.12345" }, 1.12345)]
@@ -38,9 +38,9 @@ internal class CommandLineArgumentsParserTests
     [TestCase(new[] { "USD/GBP", "2" }, 2)]
     public void Parse_ParsesAmountToExchange_WhenInputIsValid(string[] args, decimal expectedAmount)
     {
-        var request = _parser.Parse(args);
+        var details = _parser.Parse(args);
 
-        Assert.That(request.AmountToExchange, Is.EqualTo(expectedAmount));
+        Assert.That(details.AmountToExchange, Is.EqualTo(expectedAmount));
     }
 
     [TestCase(0)]

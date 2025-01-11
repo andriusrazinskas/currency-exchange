@@ -19,14 +19,13 @@ internal class Program
             var commandLineArgumentsParser = serviceProvider.GetRequiredService<ICommandLineArgumentsParser>();
             var currencyConverter = serviceProvider.GetRequiredService<ICurrencyConverter>();
 
-            var request = commandLineArgumentsParser.Parse(args);
-            var convertedAmount = await currencyConverter.ConvertAsync(request.MainCurrency, request.TargetCurrency, request.AmountToExchange);
+            var exchangeDetails = commandLineArgumentsParser.Parse(args);
+            var convertedAmount = await currencyConverter.ConvertAsync(exchangeDetails.MainCurrency, exchangeDetails.TargetCurrency, exchangeDetails.AmountToExchange);
             Console.WriteLine(convertedAmount);
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-
             return -1;
         }
 

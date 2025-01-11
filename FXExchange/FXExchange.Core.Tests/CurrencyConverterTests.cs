@@ -20,17 +20,17 @@ internal class CurrencyConverterTests
     {
         _currencyExchangeRateProvider
             .GetExchangeRateAsync(Currency.EUR, Currency.DKK)
-            .Returns(7.4394m);
+            .Returns(7.4394M);
 
-        var convertedAmount = await _currencyConverter.ConvertAsync(Currency.EUR, Currency.DKK, 3.12345m);
+        var convertedAmount = await _currencyConverter.ConvertAsync(Currency.EUR, Currency.DKK, 3.12345M);
 
-        Assert.That(convertedAmount, Is.EqualTo(23.23659393m));
+        Assert.That(convertedAmount, Is.EqualTo(23.23659393M));
     }
 
     [Test]
     public async Task ConvertAsync_ReturnsOriginalAmount_WhenConvertingToSameCurrency()
     {
-        var amountToConvert = 3.12345m;
+        var amountToConvert = 3.12345M;
 
         var convertedAmount = await _currencyConverter.ConvertAsync(Currency.EUR, Currency.EUR, amountToConvert);
 
@@ -42,7 +42,7 @@ internal class CurrencyConverterTests
     [Test]
     public void ConvertAsync_ThrowsException_WhenAmountToExchangeIsNegative()
     {
-        var exception = Assert.ThrowsAsync<ArgumentException>(() => _currencyConverter.ConvertAsync(Currency.EUR, Currency.DKK, -1.2m));
+        var exception = Assert.ThrowsAsync<ArgumentException>(() => _currencyConverter.ConvertAsync(Currency.EUR, Currency.DKK, -1.2M));
 
         Assert.That(exception.Message, Is.EqualTo("Amount to exchange cannot be negative."));
     }

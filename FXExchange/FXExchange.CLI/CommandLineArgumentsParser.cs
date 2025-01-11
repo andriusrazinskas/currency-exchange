@@ -4,19 +4,19 @@ namespace FXExchange.CLI;
 
 internal interface ICommandLineArgumentsParser
 {
-    CurrencyExchangeRequest Parse(string[] arguments);
+    CurrencyExchangeDetails Parse(string[] arguments);
 }
 
 internal class CommandLineArgumentsParser : ICommandLineArgumentsParser
 {
-    public CurrencyExchangeRequest Parse(string[] args)
+    public CurrencyExchangeDetails Parse(string[] args)
     {
         if (args.Length != 2)
         {
             throw new ArgumentException("Incorrect arguments count. Usage: FXExchange.CLI.exe <currency pair> <amount to exchange>");
         }
 
-        return new CurrencyExchangeRequest(
+        return new CurrencyExchangeDetails(
             TryParseMainCurrency(args, out var mainCurrency) ? mainCurrency : throw new ArgumentException("Currencies cannot be parsed."),
             TryParseTargetCurrency(args, out var targetCurrency) ? targetCurrency : throw new ArgumentException("Currencies cannot be parsed."),
             TryParseAmountToExchange(args, out var amountToExchange) ? amountToExchange : throw new ArgumentException("Amount to exchange cannot be parsed."));

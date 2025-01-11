@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FXExchange.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "EUR/DKK 1"
+    }
+  }
+}

@@ -22,7 +22,7 @@ internal class Program
 
             var exchangeDetails = commandLineArgumentsParser.Parse(args);
             var convertedAmount = await currencyConverter.ConvertAsync(exchangeDetails.MainCurrency, exchangeDetails.TargetCurrency, exchangeDetails.AmountToExchange);
-            Console.WriteLine(convertedAmount.ToString("F5", CultureInfo.InvariantCulture));
+            Console.WriteLine(convertedAmount.ToString("F4", CultureInfo.InvariantCulture));
         }
         catch (Exception ex)
         {

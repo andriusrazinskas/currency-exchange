@@ -39,10 +39,11 @@ internal class CurrencyConverterTests
         Assert.That(convertedAmount, Is.EqualTo(amountToConvert));
     }
 
-    [Test]
-    public void ConvertAsync_ThrowsException_WhenAmountToExchangeIsNegative()
+    [TestCase(Currency.EUR, Currency.DKK)]
+    [TestCase(Currency.EUR, Currency.EUR)]
+    public void ConvertAsync_ThrowsException_WhenAmountToExchangeIsNegative(Currency main, Currency target)
     {
-        var exception = Assert.ThrowsAsync<ArgumentException>(() => _currencyConverter.ConvertAsync(Currency.EUR, Currency.DKK, -1.2M));
+        var exception = Assert.ThrowsAsync<ArgumentException>(() => _currencyConverter.ConvertAsync(main, target, -1.2M));
 
         Assert.That(exception.Message, Is.EqualTo("Amount to exchange cannot be negative."));
     }
